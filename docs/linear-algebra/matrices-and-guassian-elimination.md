@@ -123,6 +123,7 @@ $$
 ### 2. Singular
 
 incurable, as there is no exchange that can avoid zero in second pivot position. 
+
 $$
 \begin{bmatrix}1 & 1 & 1 \\ 2 & 2 & 5 \\ 4 & 4 & 8\end{bmatrix} \rightarrow \begin{bmatrix}1 & 1 & 1 \\ 0 & 0 & 3 \\ 0 & 0 & 4\end{bmatrix}
 $$
