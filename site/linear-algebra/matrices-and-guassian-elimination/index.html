@@ -1,0 +1,746 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://listless.dev/linear-algebra/matrices-and-guassian-elimination/">
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../assets/fatigue-dark.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Matrices and Guassian Elimination - listless 💤</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Briskpace:300,300i,400,400i,700,700i%7CMullet:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Briskpace";--md-code-font:"Mullet"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+      <link rel="stylesheet" href="../../assets/javascripts/placeholder-plugin.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#matrices-and-guassian-elimination" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="listless 💤" class="md-header__button md-logo" aria-label="listless 💤" data-md-component="logo">
+      
+  <img src="../../assets/fatigue-light.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            listless 💤
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Matrices and Guassian Elimination
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="listless 💤" class="md-nav__button md-logo" aria-label="listless 💤" data-md-component="logo">
+      
+  <img src="../../assets/fatigue-light.svg" alt="logo">
+
+    </a>
+    listless 💤
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linear Algebra
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Linear Algebra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Matrices and Guassian Elimination
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Matrices and Guassian Elimination
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-elimination" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Elimination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-determinants" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Determinants
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometry-of-linear-equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geometry of Linear Equations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Geometry of Linear Equations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. rows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. columns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gaussian-elimination-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaussian Elimination Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guassian-elimination-breakdowns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guassian Elimination Breakdowns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Guassian Elimination Breakdowns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-nonsingular" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Nonsingular
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-singular" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Singular
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-elimination" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Elimination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-determinants" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Determinants
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#geometry-of-linear-equations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geometry of Linear Equations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Geometry of Linear Equations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rows" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. rows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. columns
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gaussian-elimination-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaussian Elimination Example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guassian-elimination-breakdowns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guassian Elimination Breakdowns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Guassian Elimination Breakdowns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-nonsingular" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Nonsingular
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-singular" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Singular
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="matrices-and-guassian-elimination">Matrices and Guassian Elimination</h1>
+<h2 id="introduction">Introduction</h2>
+<p><span class="arithmatex">\(n\)</span> equations in <span class="arithmatex">\(n\)</span> unknowns is the simplest and the most common case:</p>
+<div class="arithmatex">\[
+\begin{align}
+1x + 2y &amp;= 3 \\
+4x + 5y &amp;= 6
+\end{align}
+\]</div>
+<p>There are two ways to solve these. For large <span class="arithmatex">\(n\)</span>, elimination wins.</p>
+<h3 id="1-elimination">1. Elimination</h3>
+<p>subtract 4 times the first equation from the second equation.</p>
+<div class="arithmatex">\[
+\begin{align}
+eq2 &amp;- 4 \cdot eq1 \\ 
+-3y &amp;= -6 \\
+y &amp;= 2 \\
+x &amp;= -1 \text{ (back subtitution)}
+\end{align}
+\]</div>
+<h3 id="2-determinants">2. Determinants</h3>
+<p>the solution depends on size numbers in the equations.</p>
+<div class="arithmatex">\[
+\begin{align}
+y &amp;= \dfrac{\begin{bmatrix}1 &amp; 3\\4 &amp; 6\end{bmatrix}}{\begin{bmatrix}1 &amp; 2\\4 &amp; 5\end{bmatrix}} = \dfrac{1\cdot 6 - 3\cdot 4}{1\cdot 5 - 2\cdot 4} = \dfrac{-6}{-3} = 2 \\
+\\
+x &amp;= \dfrac{\begin{bmatrix}3 &amp; 2\\6 &amp; 5\end{bmatrix}}{\begin{bmatrix}1 &amp; 2\\4 &amp; 5\end{bmatrix}} = \dfrac{3\cdot 5 - 2\cdot 6}{1\cdot5 - 2\cdot 4} = \dfrac{3}{-3} = -1
+\end{align}
+\]</div>
+<hr>
+
+<h2 id="geometry-of-linear-equations">Geometry of Linear Equations</h2>
+<div class="arithmatex">\[
+\begin{align}
+2x - y &amp;= 1 \\
+x + y &amp;= 5
+\end{align}
+\]</div>
+<p>the system of linear equations can be treated in two ways:</p>
+<h3 id="1-rows">1. rows</h3>
+<p>most familiar, where each row (i.e. equation) is representing a line in 2D space and our solution is their intersection point. In case of 3D, it is the intersection of planes.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../001.svg" data-desc-position="bottom"><img alt="" src="../001.svg" width="300"></a></p>
+<h3 id="2-columns">2. columns</h3>
+<p>treat the two equations as a single <strong>vector</strong> equation, with <span class="arithmatex">\((2, 1)\)</span> as being coefficient to <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\((-1, 1)\)</span> as coefficient to <span class="arithmatex">\(y\)</span>.</p>
+<div class="arithmatex">\[
+\begin{align}
+x \begin{bmatrix}2\\1\end{bmatrix} + y \begin{bmatrix}-1\\1\end{bmatrix} = \begin{bmatrix}1\\5\end{bmatrix}
+\end{align}
+\]</div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../002.svg" data-desc-position="bottom"><img alt="" src="../002.svg" width="300"></a></p>
+<h2 id="gaussian-elimination-example">Gaussian Elimination Example</h2>
+<div class="arithmatex">\[
+\begin{align}
+&amp; \ \ \ \ \ \textbf{2}u \ \ + \ \ v \ \ \ \ + \ \ w \ \ \ \ = \ \ \ 5 \\
+&amp; \ \ \ \ \ 4u \ \ - \ \ 6v \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = -2 \\
+&amp; -2u \ \ + \ \ 7v \ \ + \ \ 2w \ \ = \ \ \ 9
+\end{align}
+\]</div>
+<p>start by subtracting multiples of the first equation from the others, eliminating <span class="arithmatex">\(u\)</span> from the last two.</p>
+<ul>
+<li><span class="arithmatex">\(eq2 - 2\cdot eq1\)</span></li>
+<li><span class="arithmatex">\(eq3 - 1\cdot eq1\)</span></li>
+</ul>
+<p>The coefficient of <span class="arithmatex">\(u\)</span> in the first equation is thus called the <strong>first pivot</strong>.</p>
+<div class="arithmatex">\[
+\begin{align}
+\textbf{2}u \ \ + \ \ v \ \ + \ \ \ \ w \ \ &amp;= \ \ \ \ \ 5 \\
+\textbf{-8}v \ \ - \ \ 2w \ \ &amp;= -12 \\
+8v \ \ + \ \ 3w \ \ &amp;= \ \ \ 14
+\end{align}
+\]</div>
+<p>in the second stage, we pick up the second pivot <span class="arithmatex">\(-8\)</span> and find multiple of that such that <span class="arithmatex">\(v\)</span> can be eliminated from the third equation.</p>
+<div class="arithmatex">\[
+\begin{align}
+\textbf{2}u \ \ + \ \ v \ \ + \ \ \ \ w \ \ &amp;= \ \ \ \ \ 5 \\
+\textbf{-8}v \ \ - \ \ 2w \ \ &amp;= -12 \\
+\textbf{1}w \ \ &amp;= \ \ \ \ \ 2
+\end{align}
+\]</div>
+<p>now the system is solved upwards, using <strong>back substitution</strong>. And we produced three pivots <span class="arithmatex">\(2, -8, 1\)</span>. We can simplify the notation by importing the right side into the matrix.</p>
+<div class="arithmatex">\[
+\begin{bmatrix}\ \ 2 &amp; \ \ 1 &amp; 1 &amp; \ \ 5\\ \ \ 4 &amp; -6 &amp; 0 &amp; -2\\-2 &amp; \ \ 7 &amp; 2 &amp; \ \ 9\end{bmatrix} \rightarrow \begin{bmatrix}2 &amp; \ \ 1 &amp; \ \ 1 &amp; \ \ \ 5\\0 &amp; -8 &amp; -2 &amp; -12\\0 &amp; \ \ 8 &amp; \ \ 3 &amp; \ \ 14\end{bmatrix} \rightarrow \begin{bmatrix}2 &amp; \ \ 1 &amp; \ \ 1 &amp; \ \ \ 5\\0 &amp; -8 &amp; -2 &amp; -12\\0 &amp; \ \ 0 &amp; \ \ 1 &amp; \ \ \ 2\end{bmatrix}
+\]</div>
+<h2 id="guassian-elimination-breakdowns">Guassian Elimination Breakdowns</h2>
+<h3 id="1-nonsingular">1. Nonsingular</h3>
+<p>cured by exchanging equation 2 and 3.</p>
+<div class="arithmatex">\[
+\begin{bmatrix}1 &amp; 1 &amp; 1 \\ 2 &amp; 2 &amp; 5 \\ 4 &amp; 6 &amp; 8\end{bmatrix} \rightarrow \begin{bmatrix}1 &amp; 1 &amp; 1 \\ 0 &amp; 0 &amp; 3 \\ 0 &amp; 2 &amp; 4\end{bmatrix} \rightarrow \begin{bmatrix}1 &amp; 1 &amp; 1 \\ 0 &amp; 2 &amp; 4 \\ 0 &amp; 0 &amp; 3\end{bmatrix}
+\]</div>
+<h3 id="2-singular">2. Singular</h3>
+<p>incurable, as there is no exchange that can avoid zero in second pivot position. 
+$$
+\begin{bmatrix}1 &amp; 1 &amp; 1 \ 2 &amp; 2 &amp; 5 \ 4 &amp; 4 &amp; 8\end{bmatrix} \rightarrow \begin{bmatrix}1 &amp; 1 &amp; 1 \ 0 &amp; 0 &amp; 3 \ 0 &amp; 0 &amp; 4\end{bmatrix}
+$$</p>
+<p>The equations themselves can be solvablae or not, dependending on whether they are consistent or not. For example, if the second equation is <span class="arithmatex">\(3w = 6\)</span> and the third equation is <span class="arithmatex">\(4w = 8\)</span>, then we'll have inifine number of solutions.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../assets/javascripts/placeholder-combined.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

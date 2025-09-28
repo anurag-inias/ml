@@ -78,3 +78,5 @@ extra_css:
 
 nav:
   - About: "index.md"
+  - Linear Algebra:
+    - Matrices and Guassian Elimination: "linear-algebra/matrices-and-guassian-elimination.md"
